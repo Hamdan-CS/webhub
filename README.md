@@ -11,7 +11,6 @@ This project demonstrates professional front-end development practices, smooth U
 - **TypeScript** – Type-safe JavaScript for scalability and maintainability  
 - **Vite** – Next-generation frontend tooling for blazing-fast builds  
 - **HTML5 / CSS3** – Semantic markup and responsive design  
-- **AI-Assisted Tools** – Used to enhance code quality and accelerate development cycles  
 
 ---
 
@@ -45,4 +44,5 @@ This project demonstrates professional front-end development practices, smooth U
    ```bash
    git clone https://github.com/your-username/your-repo-name.git
    cd your-repo-name
+
 
