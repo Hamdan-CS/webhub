@@ -44,6 +44,18 @@ This project demonstrates professional front-end development practices, smooth U
    ```bash
    git clone https://github.com/Hamdan-CS/webhub.git
    cd webhub
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   npm --prefix server install
+   ```
+
+3. **Start the app**
+   ```bash
+   npm run dev
+   ```
 
 
 
