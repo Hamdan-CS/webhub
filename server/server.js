@@ -116,8 +116,8 @@ This application was submitted through the WebHub careers page.
 
     // Email options
     const mailOptions = {
-      from: `"WebHub Careers" <${process.env.EMAIL_USER || 'abuhamdan0557@gmail.com'}>`,
-      to: 'abuhamdan0557@gmail.com',
+      from: `"WebHub Careers" <${emailUser}>`,
+      to: emailUser,
       subject: emailSubject,
       text: emailBody,
       html: emailBody.replace(/\n/g, '<br>'),
@@ -125,7 +125,7 @@ This application was submitted through the WebHub careers page.
     };
 
     // Send email
-    console.log('📤 Sending email to abuhamdan0557@gmail.com...');
+    console.log('📤 Sending email...');
     await transporter.sendMail(mailOptions);
     console.log('✅ Email sent successfully!');
 
@@ -225,8 +225,8 @@ app.get('/test-supabase', async (req, res) => {
 app.listen(PORT, () => {
   console.log(`🚀 WebHub Career Application Server`);
   console.log(`📍 Server running on http://localhost:${PORT}`);
-  console.log(`📧 Email configured for: ${process.env.EMAIL_USER || 'abuhamdan0557@gmail.com'}`);
-  console.log(`📬 Applications will be sent to: abuhamdan0557@gmail.com`);
+  console.log(`📧 Email configured`);
+  console.log(`📬 Applications will be sent via configured email`);
   console.log(`🗄️  Supabase URL: ${supabaseUrl}`);
   console.log(`✅ Ready to accept applications!`);
 });
