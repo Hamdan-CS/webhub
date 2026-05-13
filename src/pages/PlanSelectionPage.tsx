@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Check, ArrowLeft, Send, Mail, Globe, Share2, MessageSquare } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
+import { submitServiceRequest } from '../services/contactApi';
 
 interface Plan {
   id: string;
@@ -35,6 +36,7 @@ export function PlanSelectionPage() {
     requirements: ''
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const plans: Plan[] = [
     {
@@ -129,15 +131,33 @@ export function PlanSelectionPage() {
     setSelectedPlan(planId);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitted(true);
-    
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setIsSubmitted(false);
-      navigate('/');
-    }, 3000);
+    setIsLoading(true);
+
+    try {
+      const response = await submitServiceRequest({
+        selectedService: selectedPlan,
+        email: formData.email,
+        domain: formData.domain,
+        socialMedia: formData.socialMedia,
+        message: formData.requirements,
+      });
+
+      console.log('Service request response:', response);
+      setIsSubmitted(true);
+
+      setTimeout(() => {
+        setIsSubmitted(false);
+        navigate('/');
+      }, 3000);
+    } catch (error) {
+      console.error('Failed to submit service request:', error);
+      const message = error instanceof Error ? error.message : 'Failed to submit. Please try again.';
+      alert(message);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   if (isSubmitted) {
@@ -575,18 +595,19 @@ export function PlanSelectionPage() {
               {/* Submit Button */}
               <motion.button
                 type="submit"
+                disabled={isLoading}
                 className={`w-full px-6 py-4 border rounded-lg font-medium transition-all duration-200 flex items-center justify-center gap-2 group ${
                   isDarkMode 
-                    ? 'bg-[#00F5FF]/10 hover:bg-[#00F5FF]/20 border-[#00F5FF]/30 text-white'
-                    : 'bg-[#3B82F6]/10 hover:bg-[#3B82F6]/20 border-[#3B82F6]/30 text-[#3B82F6]'
+                    ? 'bg-[#00F5FF]/10 hover:bg-[#00F5FF]/20 border-[#00F5FF]/30 text-white disabled:opacity-60'
+                    : 'bg-[#3B82F6]/10 hover:bg-[#3B82F6]/20 border-[#3B82F6]/30 text-[#3B82F6] disabled:opacity-60'
                 }`}
-                whileHover={{ scale: 1.02 }}
+                whileHover={{ scale: isLoading ? 1 : 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.8 }}
               >
-                <span>Submit Plan Selection</span>
+                <span>{isLoading ? 'Submitting...' : 'Submit Plan Selection'}</span>
                 <Send className="w-5 h-5 transition-transform group-hover:translate-x-1" />
               </motion.button>
             </form>
