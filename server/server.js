@@ -44,11 +44,17 @@ const upload = multer({
 });
 
 // Configure nodemailer
+const emailUser = process.env.EMAIL_USER;
+const emailPass = process.env.EMAIL_PASS;
+if (!emailUser || !emailPass) {
+  console.error('❌ Error: EMAIL_USER and EMAIL_PASS environment variables are required');
+  process.exit(1);
+}
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: process.env.EMAIL_USER || 'abuhamdan0557@gmail.com',
-    pass: process.env.EMAIL_PASS || 'your-app-password'
+    user: emailUser,
+    pass: emailPass
   }
 });
 

@@ -11,8 +11,12 @@ if (!supabaseUrl || !supabaseAnonKey) {
 }
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
-const emailUser = process.env.EMAIL_USER || 'abuhamdan0557@gmail.com';
+const emailUser = process.env.EMAIL_USER;
 const emailPass = (process.env.EMAIL_PASS || '').replace(/\s+/g, '');
+if (!emailUser) {
+  console.error('❌ Error: EMAIL_USER environment variable is required');
+  process.exit(1);
+}
 
 const createTransporters = () => {
   const common = {
