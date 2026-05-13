@@ -9,7 +9,7 @@ const resolveApiBaseUrl = () => {
     return configured;
   }
 
-  return '/.netlify/functions';
+  return '/api';
 };
 
 const API_BASE_URL = resolveApiBaseUrl();
