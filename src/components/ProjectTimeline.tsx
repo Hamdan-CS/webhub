@@ -68,6 +68,14 @@ export function ProjectTimeline() {
     return isDarkMode ? 'rgba(255, 255, 255, 0.2)' : 'rgba(255, 255, 255, 0.5)';
   };
 
+  // Calculate progress bar width based on highlighted phase
+  const getCurrentProgress = () => {
+    if (highlightedPhase !== null && highlightedPhase >= 0 && highlightedPhase < phases.length) {
+      return `${phases[highlightedPhase].progress}%`;
+    }
+    return '55%'; // Default progress (Build phase)
+  };
+
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const input = searchInput.toLowerCase().trim();
@@ -208,13 +216,12 @@ export function ProjectTimeline() {
               }`}
             />
 
-            {/* Progress Bar Fill (55%) */}
+            {/* Progress Bar Fill - Dynamic */}
             <motion.div
               className="absolute top-1/2 left-0 h-1 rounded-full transform -translate-y-1/2 bg-gradient-to-r from-[#00F5FF] to-[#00FFFF]"
               initial={{ width: 0 }}
-              whileInView={{ width: '55%' }}
-              transition={{ delay: 0.3, duration: 1.2, ease: 'easeOut' }}
-              viewport={{ once: true }}
+              animate={{ width: getCurrentProgress() }}
+              transition={{ delay: 0.3, duration: 0.8, ease: 'easeOut' }}
               style={{
                 boxShadow: isDarkMode
                   ? '0 0 20px rgba(0, 245, 255, 0.6)'

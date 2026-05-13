@@ -150,7 +150,7 @@ export function Navbar() {
                   {isDarkMode ? (
                     <Sun className="w-5 h-5" />
                   ) : (
-                    <Moon className="w-5 h-5" />
+                    <Moon className="w-5 h-5 transform rotate-12" />
                   )}
                 </motion.div>
               </motion.button>
