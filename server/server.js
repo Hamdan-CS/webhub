@@ -13,8 +13,12 @@ app.use(cors());
 app.use(express.json());
 app.use('/api', contactRoutes);
 // Supabase configuration
-const supabaseUrl = 'https://dbltqzhultejrelbdhyt.supabase.co';
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRibHRxemh1bHRlanJlbGJkaHl0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYyMDg1MTMsImV4cCI6MjA5MTc4NDUxM30.IT6SHZKRdHL8x0iD8q6XsPd3GFYWPBgLmoJIaUQoN28';
+const supabaseUrl = process.env.SUPABASE_URL;
+const supabaseKey = process.env.SUPABASE_ANON_KEY;
+if (!supabaseUrl || !supabaseKey) {
+  console.error('❌ Error: SUPABASE_URL and SUPABASE_ANON_KEY environment variables are required');
+  process.exit(1);
+}
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 // Configure multer for file uploads
