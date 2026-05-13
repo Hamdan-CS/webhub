@@ -85,16 +85,20 @@ exports.handler = async (event) => {
       return false;
     };
 
-    const planLabels = {
-      basic: 'Basic Plan $200',
-      standard: 'Standard Plan $300',
-      premium: 'Premium Plan $400',
+    const serviceMap = {
+      // Initial Setup types
+      website: { label: 'Website Setup', price: '$150 - $300', type: 'Initial Setup' },
+      social: { label: 'Social Media Setup', price: '$100 - $200', type: 'Initial Setup' },
+      seo: { label: 'SEO & Google My Business', price: '$100 - $200', type: 'Initial Setup' },
+      // Additional services
+      posters: { label: 'Promotional Posters', price: '$50 - $100', type: 'Additional Service' },
+      events: { label: 'Event Content Creation', price: '$75 - $150', type: 'Additional Service' },
     };
 
-    const planLabel = planLabels[selectedService] || selectedService;
+    const serviceInfo = serviceMap[selectedService] || { label: selectedService, price: '', type: 'Service' };
 
-    const emailSubject = `New Service Request: ${planLabel}`;
-    const emailBody = `New service request received:\n\nSelected Service: ${planLabel}\nCustomer Email: ${email}\n\n---\nThis request was submitted through the WebHub services page.`;
+    const emailSubject = `New Service Request: ${serviceInfo.label} (${serviceInfo.price})`;
+    const emailBody = `New service request received:\n\nType: ${serviceInfo.type}\nSelected: ${serviceInfo.label}\nPrice: ${serviceInfo.price}\nCustomer Email: ${email}\n\n---\nThis request was submitted through the WebHub services page.`;
 
     let emailSent = false;
     let dataSaved = false;
@@ -118,6 +122,9 @@ exports.handler = async (event) => {
       .insert([
         {
           selected_service: selectedService,
+          selected_service_label: serviceInfo.label,
+          selected_service_type: serviceInfo.type,
+          selected_service_price: serviceInfo.price,
           email,
           domain: domain || null,
           social_media: socialMedia || null,
