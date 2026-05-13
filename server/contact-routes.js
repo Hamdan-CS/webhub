@@ -166,21 +166,16 @@ router.post('/submit-service-request', async (req, res) => {
       });
     }
 
-    const emailSubject = `New Service Request: ${selectedService}`;
-    const emailBody = `
-New service request received:
+    const planLabels = {
+      basic: 'Basic Plan $200',
+      standard: 'Standard Plan $300',
+      premium: 'Premium Plan $400',
+    };
 
-Selected Service: ${selectedService}
-Customer Email: ${email}
-Domain: ${domain || 'Not provided'}
-Social Media: ${socialMedia || 'Not provided'}
+    const planLabel = planLabels[selectedService] || selectedService;
 
-Message:
-${message}
-
----
-This request was submitted through the WebHub services page.
-    `.trim();
+    const emailSubject = `New Service Request: ${planLabel}`;
+    const emailBody = `New service request received:\n\nSelected Service: ${planLabel}\nCustomer Email: ${email}\n\n---\nThis request was submitted through the WebHub services page.`;
 
     let emailSent = false;
     let dataSaved = false;
