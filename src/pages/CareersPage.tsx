@@ -175,14 +175,14 @@ const CareersPage: React.FC = () => {
   };
 
   return (
-    <div className={`min-h-screen ${isDarkMode ? 'bg-[#0A0B14]' : 'bg-gray-50'} transition-colors duration-300`}>
+    <div className={`min-h-screen ${isDarkMode ? 'bg-[#0A0B14]' : 'bg-[#F9FAFB]'} transition-colors duration-300`}>
       {/* Hero Section */}
-      <div className={`${isDarkMode ? 'bg-gradient-to-br from-[#0D0B1F] to-[#0A0B14]' : 'bg-gradient-to-br from-blue-50 to-indigo-100'} py-20`}>
+      <div className={`${isDarkMode ? 'bg-gradient-to-br from-[#0D0B1F] to-[#0A0B14]' : 'bg-gradient-to-br from-[#EFF6FF] to-[#DBEAFE]'} py-20`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className={`text-5xl md:text-6xl font-bold mb-6 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}
+            className={`text-5xl md:text-6xl font-bold mb-6 ${isDarkMode ? 'text-white' : 'text-[#1F2937]'}`}
           >
             Join Our Team
           </motion.h1>
@@ -190,7 +190,7 @@ const CareersPage: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className={`text-xl md:text-2xl mb-8 max-w-3xl mx-auto ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}
+            className={`text-xl md:text-2xl mb-8 max-w-3xl mx-auto ${isDarkMode ? 'text-[#E2E2E2]' : 'text-[#4B5563]'}`}
           >
             Build the future of web development with us. We're looking for passionate individuals who want to make a difference.
           </motion.p>
@@ -209,8 +209,8 @@ const CareersPage: React.FC = () => {
                     ? 'bg-[#00F5FF] text-black shadow-lg'
                     : 'bg-blue-500 text-white shadow-lg'
                   : isDarkMode
-                    ? 'text-gray-300 hover:text-white hover:bg-[#00F5FF]/10'
-                    : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                    ? 'text-[#E2E2E2] hover:text-white hover:bg-[#00F5FF]/10'
+                    : 'text-[#4B5563] hover:text-[#1F2937] hover:bg-[#F9FAFB]'
               }`}
             >
               <Briefcase className="w-5 h-5 mr-2" />
@@ -224,8 +224,8 @@ const CareersPage: React.FC = () => {
                     ? 'bg-[#00F5FF] text-black shadow-lg'
                     : 'bg-blue-500 text-white shadow-lg'
                   : isDarkMode
-                    ? 'text-gray-300 hover:text-white hover:bg-[#00F5FF]/10'
-                    : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                    ? 'text-[#E2E2E2] hover:text-white hover:bg-[#00F5FF]/10'
+                    : 'text-[#4B5563] hover:text-[#1F2937] hover:bg-[#F9FAFB]'
               }`}
             >
               <Star className="w-5 h-5 mr-2" />
@@ -247,35 +247,35 @@ const CareersPage: React.FC = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
-                className={`${isDarkMode ? 'bg-[#0D0B1F] border-[#00F5FF]/20' : 'bg-white border-gray-200'} border rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer`}
+                className={`${isDarkMode ? 'bg-[#0D0B1F] border-[#00F5FF]/20' : 'bg-white border-[#3B82F6]/10'} border rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer`}
                 onClick={() => setExpandedCard(expandedCard === index ? null : index)}
               >
                 <div className="flex justify-between items-start">
                   <div className="flex-1">
-                    <h3 className={`text-2xl font-bold mb-2 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                    <h3 className={`text-2xl font-bold mb-2 ${isDarkMode ? 'text-white' : 'text-[#1F2937]'}`}>
                       {position.title}
                     </h3>
                     <div className="flex flex-wrap gap-4 mb-4">
                       <div className="flex items-center">
-                        <Users className={`w-4 h-4 mr-2 ${isDarkMode ? 'text-[#00F5FF]' : 'text-blue-500'}`} />
-                        <span className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                        <Users className={`w-4 h-4 mr-2 ${isDarkMode ? 'text-[#00F5FF]' : 'text-[#3B82F6]'}`} />
+                        <span className={`text-sm ${isDarkMode ? 'text-[#E2E2E2]' : 'text-[#4B5563]'}`}>
                           {position.department}
                         </span>
                       </div>
                       <div className="flex items-center">
-                        <MapPin className={`w-4 h-4 mr-2 ${isDarkMode ? 'text-[#00F5FF]' : 'text-blue-500'}`} />
-                        <span className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                        <MapPin className={`w-4 h-4 mr-2 ${isDarkMode ? 'text-[#00F5FF]' : 'text-[#3B82F6]'}`} />
+                        <span className={`text-sm ${isDarkMode ? 'text-[#E2E2E2]' : 'text-[#4B5563]'}`}>
                           {position.location}
                         </span>
                       </div>
                       <div className="flex items-center">
-                        <Clock className={`w-4 h-4 mr-2 ${isDarkMode ? 'text-[#00F5FF]' : 'text-blue-500'}`} />
-                        <span className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                        <Clock className={`w-4 h-4 mr-2 ${isDarkMode ? 'text-[#00F5FF]' : 'text-[#3B82F6]'}`} />
+                        <span className={`text-sm ${isDarkMode ? 'text-[#E2E2E2]' : 'text-[#4B5563]'}`}>
                           {position.type}
                         </span>
                       </div>
                     </div>
-                    <p className={`${isDarkMode ? 'text-gray-300' : 'text-gray-600'} mb-4`}>
+                    <p className={`${isDarkMode ? 'text-[#E2E2E2]' : 'text-[#4B5563]'} mb-4`}>
                       {position.description}
                     </p>
                   </div>
@@ -287,7 +287,7 @@ const CareersPage: React.FC = () => {
                     className={`ml-6 px-6 py-3 rounded-lg font-medium transition-all duration-200 ${
                       isDarkMode
                         ? 'bg-[#00F5FF] text-black hover:bg-[#00F5FF]/90 hover:shadow-lg hover:shadow-[#00F5FF]/25'
-                        : 'bg-blue-500 text-white hover:bg-blue-600 hover:shadow-lg'
+                        : 'bg-[#3B82F6] text-white hover:bg-[#3B82F6]/90 hover:shadow-lg'
                     }`}
                   >
                     Apply Now
@@ -300,16 +300,16 @@ const CareersPage: React.FC = () => {
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: 'auto' }}
                     exit={{ opacity: 0, height: 0 }}
-                    className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700"
+                    className={`mt-6 pt-6 border-t ${isDarkMode ? 'border-[#00F5FF]/20' : 'border-[#3B82F6]/10'}`}
                   >
                     <div className="grid md:grid-cols-2 gap-6">
                       <div>
-                        <h4 className={`text-lg font-semibold mb-3 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                        <h4 className={`text-lg font-semibold mb-3 ${isDarkMode ? 'text-white' : 'text-[#1F2937]'}`}>
                           Requirements
                         </h4>
                         <ul className="space-y-2">
                           {position.requirements.map((req, reqIndex) => (
-                            <li key={reqIndex} className={`flex items-start ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                            <li key={reqIndex} className={`flex items-start ${isDarkMode ? 'text-[#E2E2E2]' : 'text-[#4B5563]'}`}>
                               <div className={`w-2 h-2 rounded-full mt-2 mr-3 flex-shrink-0 ${isDarkMode ? 'bg-[#00F5FF]' : 'bg-blue-500'}`} />
                               {req}
                             </li>
@@ -317,12 +317,12 @@ const CareersPage: React.FC = () => {
                         </ul>
                       </div>
                       <div>
-                        <h4 className={`text-lg font-semibold mb-3 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                        <h4 className={`text-lg font-semibold mb-3 ${isDarkMode ? 'text-white' : 'text-[#1F2937]'}`}>
                           Responsibilities
                         </h4>
                         <ul className="space-y-2">
                           {position.responsibilities.map((resp, respIndex) => (
-                            <li key={respIndex} className={`flex items-start ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                            <li key={respIndex} className={`flex items-start ${isDarkMode ? 'text-[#E2E2E2]' : 'text-[#4B5563]'}`}>
                               <div className={`w-2 h-2 rounded-full mt-2 mr-3 flex-shrink-0 ${isDarkMode ? 'bg-[#00F5FF]' : 'bg-blue-500'}`} />
                               {resp}
                             </li>
@@ -346,11 +346,11 @@ const CareersPage: React.FC = () => {
           >
             <div className={`${isDarkMode ? 'bg-[#0D0B1F]' : 'bg-white'} rounded-xl p-8 shadow-lg`}>
               <div className="text-center mb-8">
-                <Star className={`w-16 h-16 mx-auto mb-4 ${isDarkMode ? 'text-[#00F5FF]' : 'text-blue-500'}`} />
-                <h2 className={`text-3xl font-bold mb-4 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                <Star className={`w-16 h-16 mx-auto mb-4 ${isDarkMode ? 'text-[#00F5FF]' : 'text-[#3B82F6]'}`} />
+                <h2 className={`text-3xl font-bold mb-4 ${isDarkMode ? 'text-white' : 'text-[#1F2937]'}`}>
                   Can't find your role? Show us what you've got.
                 </h2>
-                <p className={`text-lg ${isDarkMode ? 'text-gray-300' : 'text-gray-600'} max-w-2xl mx-auto`}>
+                <p className={`text-lg ${isDarkMode ? 'text-[#E2E2E2]' : 'text-[#4B5563]'} max-w-2xl mx-auto`}>
                   Tell us how you can bring value to WebHub — whether it's creativity, strategy, or tech innovation. 
                   We're always open to future leaders and creators.
                 </p>
@@ -358,7 +358,7 @@ const CareersPage: React.FC = () => {
 
               <form onSubmit={handleTalentSubmit} className="space-y-6">
                 <div>
-                  <label className={`block text-sm font-medium mb-2 ${isDarkMode ? 'text-white' : 'text-gray-700'}`}>
+                  <label className={`block text-sm font-medium mb-2 ${isDarkMode ? 'text-white' : 'text-[#1F2937]'}`}>
                     Your Vision for WebHub *
                   </label>
                   <textarea
@@ -369,15 +369,15 @@ const CareersPage: React.FC = () => {
                     rows={4}
                     className={`w-full px-4 py-3 rounded-lg border transition-colors duration-200 ${
                       isDarkMode
-                        ? 'bg-[#0A0B14] border-[#00F5FF]/30 text-white placeholder-gray-400 focus:border-[#00F5FF] focus:ring-2 focus:ring-[#00F5FF]/20'
-                        : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20'
+                        ? 'bg-[#0A0B14] border-[#00F5FF]/30 text-white placeholder-[#E2E2E2]/40 focus:border-[#00F5FF] focus:ring-2 focus:ring-[#00F5FF]/20'
+                        : 'bg-white border-[#3B82F6]/30 text-[#1F2937] placeholder-[#6B7280] focus:border-[#3B82F6]/50 focus:ring-2 focus:ring-[#3B82F6]/20'
                     }`}
                   />
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                    <label className={`block text-sm font-medium mb-2 ${isDarkMode ? 'text-white' : 'text-gray-700'}`}>
+                    <label className={`block text-sm font-medium mb-2 ${isDarkMode ? 'text-white' : 'text-[#1F2937]'}`}>
                       Full Name *
                     </label>
                     <input
@@ -387,13 +387,13 @@ const CareersPage: React.FC = () => {
                       onChange={(e) => handleTalentFormChange('fullName', e.target.value)}
                       className={`w-full px-4 py-3 rounded-lg border transition-colors duration-200 ${
                         isDarkMode
-                          ? 'bg-[#0A0B14] border-[#00F5FF]/30 text-white placeholder-gray-400 focus:border-[#00F5FF] focus:ring-2 focus:ring-[#00F5FF]/20'
-                          : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20'
+                          ? 'bg-[#0A0B14] border-[#00F5FF]/30 text-white placeholder-[#E2E2E2]/40 focus:border-[#00F5FF] focus:ring-2 focus:ring-[#00F5FF]/20'
+                          : 'bg-white border-[#3B82F6]/30 text-[#1F2937] placeholder-[#6B7280] focus:border-[#3B82F6]/50 focus:ring-2 focus:ring-[#3B82F6]/20'
                       }`}
                     />
                   </div>
                   <div>
-                    <label className={`block text-sm font-medium mb-2 ${isDarkMode ? 'text-white' : 'text-gray-700'}`}>
+                    <label className={`block text-sm font-medium mb-2 ${isDarkMode ? 'text-white' : 'text-[#1F2937]'}`}>
                       Email *
                     </label>
                     <input
@@ -403,15 +403,15 @@ const CareersPage: React.FC = () => {
                       onChange={(e) => handleTalentFormChange('email', e.target.value)}
                       className={`w-full px-4 py-3 rounded-lg border transition-colors duration-200 ${
                         isDarkMode
-                          ? 'bg-[#0A0B14] border-[#00F5FF]/30 text-white placeholder-gray-400 focus:border-[#00F5FF] focus:ring-2 focus:ring-[#00F5FF]/20'
-                          : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20'
+                          ? 'bg-[#0A0B14] border-[#00F5FF]/30 text-white placeholder-[#E2E2E2]/40 focus:border-[#00F5FF] focus:ring-2 focus:ring-[#00F5FF]/20'
+                          : 'bg-white border-[#3B82F6]/30 text-[#1F2937] placeholder-[#6B7280] focus:border-[#3B82F6]/50 focus:ring-2 focus:ring-[#3B82F6]/20'
                       }`}
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className={`block text-sm font-medium mb-2 ${isDarkMode ? 'text-white' : 'text-gray-700'}`}>
+                  <label className={`block text-sm font-medium mb-2 ${isDarkMode ? 'text-white' : 'text-[#1F2937]'}`}>
                     Phone Number
                   </label>
                   <input
@@ -420,23 +420,23 @@ const CareersPage: React.FC = () => {
                     onChange={(e) => handleTalentFormChange('phone', e.target.value)}
                     className={`w-full px-4 py-3 rounded-lg border transition-colors duration-200 ${
                       isDarkMode
-                        ? 'bg-[#0A0B14] border-[#00F5FF]/30 text-white placeholder-gray-400 focus:border-[#00F5FF] focus:ring-2 focus:ring-[#00F5FF]/20'
-                        : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20'
+                        ? 'bg-[#0A0B14] border-[#00F5FF]/30 text-white placeholder-[#E2E2E2]/40 focus:border-[#00F5FF] focus:ring-2 focus:ring-[#00F5FF]/20'
+                        : 'bg-white border-[#3B82F6]/30 text-[#1F2937] placeholder-[#6B7280] focus:border-[#3B82F6]/50 focus:ring-2 focus:ring-[#3B82F6]/20'
                     }`}
                   />
                 </div>
 
                 <div>
-                  <label className={`block text-sm font-medium mb-2 ${isDarkMode ? 'text-white' : 'text-gray-700'}`}>
+                  <label className={`block text-sm font-medium mb-2 ${isDarkMode ? 'text-white' : 'text-[#1F2937]'}`}>
                     Upload Portfolio
                   </label>
                   <div className={`border-2 border-dashed rounded-lg p-6 text-center transition-colors duration-200 ${
                     isDarkMode
                       ? 'border-[#00F5FF]/30 hover:border-[#00F5FF]/50'
-                      : 'border-gray-300 hover:border-blue-400'
+                      : 'border-gray-300 hover:border-[#3B82F6]/50'
                   }`}>
-                    <Upload className={`w-8 h-8 mx-auto mb-2 ${isDarkMode ? 'text-[#00F5FF]' : 'text-blue-500'}`} />
-                    <p className={`${isDarkMode ? 'text-gray-300' : 'text-gray-600'} mb-2`}>
+                    <Upload className={`w-8 h-8 mx-auto mb-2 ${isDarkMode ? 'text-[#00F5FF]' : 'text-[#3B82F6]'}`} />
+                    <p className={`${isDarkMode ? 'text-[#E2E2E2]' : 'text-[#4B5563]'} mb-2`}>
                       Upload your portfolio (PDF, ZIP, DOC, DOCX)
                     </p>
                     <input
@@ -451,13 +451,13 @@ const CareersPage: React.FC = () => {
                       className={`inline-block px-4 py-2 rounded-lg cursor-pointer transition-colors duration-200 ${
                         isDarkMode
                           ? 'bg-[#00F5FF]/10 text-[#00F5FF] hover:bg-[#00F5FF]/20'
-                          : 'bg-blue-50 text-blue-600 hover:bg-blue-100'
+                          : 'bg-[#3B82F6]/10 text-[#3B82F6] hover:bg-[#3B82F6]/20'
                       }`}
                     >
                       Choose File
                     </label>
                     {talentForm.portfolio && (
-                      <p className={`mt-2 text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                      <p className={`mt-2 text-sm ${isDarkMode ? 'text-[#E2E2E2]' : 'text-[#4B5563]'}`}>
                         Selected: {talentForm.portfolio.name}
                       </p>
                     )}
@@ -472,7 +472,7 @@ const CareersPage: React.FC = () => {
                   className={`w-full py-4 rounded-lg font-medium transition-all duration-200 flex items-center justify-center ${
                     isDarkMode
                       ? 'bg-[#00F5FF] text-black hover:bg-[#00F5FF]/90 hover:shadow-lg hover:shadow-[#00F5FF]/25'
-                      : 'bg-blue-500 text-white hover:bg-blue-600 hover:shadow-lg'
+                      : 'bg-[#3B82F6] text-white hover:bg-[#3B82F6]/90 hover:shadow-lg'
                   } ${isSubmittingTalent ? 'opacity-50 cursor-not-allowed' : ''}`}
                 >
                   {isSubmittingTalent ? (
@@ -497,10 +497,10 @@ const CareersPage: React.FC = () => {
       <div className={`py-20 ${isDarkMode ? 'bg-[#0D0B1F]' : 'bg-white'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className={`text-4xl font-bold mb-6 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+            <h2 className={`text-4xl font-bold mb-6 ${isDarkMode ? 'text-white' : 'text-[#1F2937]'}`}>
               Why Work at WebHub?
             </h2>
-            <p className={`text-xl max-w-3xl mx-auto ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+            <p className={`text-xl max-w-3xl mx-auto ${isDarkMode ? 'text-[#E2E2E2]' : 'text-[#4B5563]'}`}>
               We're not just building websites – we're crafting digital experiences that transform businesses and delight users.
             </p>
           </div>
@@ -528,17 +528,17 @@ const CareersPage: React.FC = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
-                className={`text-center p-6 rounded-xl ${isDarkMode ? 'bg-[#0A0B14]' : 'bg-gray-50'}`}
+                className={`text-center p-6 rounded-xl ${isDarkMode ? 'bg-[#0A0B14]' : 'bg-[#F9FAFB]'}`}
               >
                 <div className={`inline-flex items-center justify-center w-16 h-16 rounded-full mb-4 ${
-                  isDarkMode ? 'bg-[#00F5FF]/10 text-[#00F5FF]' : 'bg-blue-100 text-blue-600'
+                  isDarkMode ? 'bg-[#00F5FF]/10 text-[#00F5FF]' : 'bg-[#3B82F6]/10 text-[#3B82F6]'
                 }`}>
                   {benefit.icon}
                 </div>
-                <h3 className={`text-xl font-semibold mb-3 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                <h3 className={`text-xl font-semibold mb-3 ${isDarkMode ? 'text-white' : 'text-[#1F2937]'}`}>
                   {benefit.title}
                 </h3>
-                <p className={`${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                <p className={`${isDarkMode ? 'text-[#E2E2E2]' : 'text-[#4B5563]'}`}>
                   {benefit.description}
                 </p>
               </motion.div>
@@ -548,12 +548,12 @@ const CareersPage: React.FC = () => {
       </div>
 
       {/* CTA Section */}
-      <div className={`py-20 ${isDarkMode ? 'bg-gradient-to-r from-[#0A0B14] to-[#0D0B1F]' : 'bg-gradient-to-r from-blue-50 to-indigo-100'}`}>
+      <div className={`py-20 ${isDarkMode ? 'bg-gradient-to-r from-[#0A0B14] to-[#0D0B1F]' : 'bg-gradient-to-r from-[#EFF6FF] to-[#DBEAFE]'}`}>
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h2 className={`text-4xl font-bold mb-6 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+          <h2 className={`text-4xl font-bold mb-6 ${isDarkMode ? 'text-white' : 'text-[#1F2937]'}`}>
             Ready to Join Our Team?
           </h2>
-          <p className={`text-xl mb-8 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+          <p className={`text-xl mb-8 ${isDarkMode ? 'text-[#E2E2E2]' : 'text-[#4B5563]'}`}>
             Whether you're looking for a specific role or want to show us your unique talents, we'd love to hear from you.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -562,7 +562,7 @@ const CareersPage: React.FC = () => {
               className={`px-8 py-4 rounded-lg font-medium transition-all duration-200 ${
                 isDarkMode
                   ? 'bg-[#00F5FF] text-black hover:bg-[#00F5FF]/90 hover:shadow-lg hover:shadow-[#00F5FF]/25'
-                  : 'bg-blue-500 text-white hover:bg-blue-600 hover:shadow-lg'
+                  : 'bg-[#3B82F6] text-white hover:bg-[#3B82F6]/90 hover:shadow-lg'
               }`}
             >
               View Open Positions
@@ -572,7 +572,7 @@ const CareersPage: React.FC = () => {
               className={`px-8 py-4 rounded-lg font-medium transition-all duration-200 ${
                 isDarkMode
                   ? 'border-2 border-[#00F5FF] text-[#00F5FF] hover:bg-[#00F5FF]/10'
-                  : 'border-2 border-blue-500 text-blue-500 hover:bg-blue-50'
+                  : 'border-2 border-[#3B82F6] text-[#3B82F6] hover:bg-[#3B82F6]/10'
               }`}
             >
               Submit Your Talent
@@ -603,10 +603,10 @@ const CareersPage: React.FC = () => {
             className={`${isDarkMode ? 'bg-[#0D0B1F]' : 'bg-white'} rounded-xl p-8 max-w-md w-full text-center shadow-2xl`}
           >
             <CheckCircle className={`w-16 h-16 mx-auto mb-4 ${isDarkMode ? 'text-[#00F5FF]' : 'text-green-500'}`} />
-            <h3 className={`text-2xl font-bold mb-4 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+            <h3 className={`text-2xl font-bold mb-4 ${isDarkMode ? 'text-white' : 'text-[#1F2937]'}`}>
               Thanks for sharing your talent!
             </h3>
-            <p className={`${isDarkMode ? 'text-gray-300' : 'text-gray-600'} mb-6`}>
+            <p className={`${isDarkMode ? 'text-[#E2E2E2]' : 'text-[#4B5563]'} mb-6`}>
               If there's a match, you'll hear from us soon.
             </p>
             <button
