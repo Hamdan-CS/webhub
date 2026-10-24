@@ -1,199 +1,141 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Button } from '../components/Button';
 import { ServicesGrid } from '../components/ServicesGrid';
 import { PricingSection } from '../components/PricingSection';
 import { SetupFeesSection } from '../components/SetupFeesSection';
-import { CTAButton } from '../components/CTAButton';
 import { ScrollIndicator } from '../components/ScrollIndicator';
 import { Footer } from '../components/Footer';
 import { KPIStatsSection } from '../components/KPIStatsSection';
 import { InfographicsStatsStrip } from '../components/InfographicsStatsStrip';
+import { Hero3D } from '../components/Hero3D';
 import { services } from '../data/services';
 import { motion } from 'framer-motion';
-import { useTheme } from '../contexts/ThemeContext';
+import { ArrowRight, Sparkles } from 'lucide-react';
 
 export function HomePage() {
   const navigate = useNavigate();
-  const { isDarkMode } = useTheme();
 
   const scrollToServices = () => {
     const servicesSection = document.getElementById('services');
     if (servicesSection) {
-      const yOffset = -80; // Account for navbar height
+      const yOffset = -80;
       const y = servicesSection.getBoundingClientRect().top + window.pageYOffset + yOffset;
       window.scrollTo({ top: y, behavior: 'smooth' });
     }
   };
 
-  const handleLaunchClick = () => {
-    console.log('Launch button clicked!'); // Debug log
-    navigate('/project-form');
-  };
-
-  const handleCTAClick = () => {
-    console.log('CTA button clicked!'); // Debug log
-    navigate('/project-form');
-  };
+  const handleLaunchClick = () => navigate('/project-form');
+  const handleCTAClick = () => navigate('/project-form');
 
   return (
     <>
-      {/* Hero Section - First Page */}
-      <div className={`relative overflow-hidden pt-60 min-h-screen flex items-center ${
-        isDarkMode 
-          ? 'bg-gradient-to-br from-[#00F5FF]/10 via-[#40E0D0]/5 to-[#00F5FF]/10'
-          : 'bg-gradient-to-br from-[#3B82F6]/5 via-[#60A5FA]/3 to-[#3B82F6]/5'
-      }`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-          <motion.div 
-            className="text-center relative z-10"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <motion.h1 
-              className={`text-5xl md:text-7xl font-bold mb-6 ${
-                isDarkMode ? 'neon-glow text-white' : 'neon-glow text-[#1F2937]'
-              }`}
-              animate={{ 
-                textShadow: isDarkMode 
-                  ? [
-                      "0 0 5px rgba(0, 245, 255, 0.5)",
-                      "0 0 15px rgba(0, 245, 255, 0.5)",
-                      "0 0 5px rgba(0, 245, 255, 0.5)"
-                    ]
-                  : [
-                      "0 0 5px rgba(59, 130, 246, 0.3)",
-                      "0 0 15px rgba(59, 130, 246, 0.3)",
-                      "0 0 5px rgba(59, 130, 246, 0.3)"
-                    ]
-              }}
-              transition={{ duration: 2, repeat: Infinity }}
+      {/* Hero Section with 3D */}
+      <div className="relative overflow-hidden pt-24 min-h-screen flex items-center mesh-bg">
+        <div className="absolute inset-0 cyber-grid opacity-40" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left: Text content */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.7 }}
             >
-              Welcome to WebHub
-            </motion.h1>
-            <motion.p 
-              className={`text-2xl md:text-3xl font-poppins mb-4 ${
-                isDarkMode ? 'text-[#00F5FF]' : 'text-[#3B82F6]'
-              }`}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5 }}
-            >
-              Making Your Business Shine Online
-            </motion.p>
-            <motion.p 
-              className={`text-xl md:text-2xl font-rubnik mb-10 max-w-3xl mx-auto ${
-                isDarkMode ? 'text-[#E2E2E2]' : 'text-[#4B5563]'
-              }`}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.7 }}
-            >
-              We specialize in enhancing your business's online presence through custom website design, 
-              social media management, SEO, content creation, and online reputation management. 
-              Our mission is to help businesses like yours connect with customers, boost visibility, 
-              and achieve growth in the digital landscape.
-            </motion.p>
-            <div className="flex gap-4 justify-center">
-              <motion.button
-                onClick={handleLaunchClick}
-                className={`relative px-6 py-3 rounded-lg font-medium text-lg overflow-hidden group border transition-all duration-200 ${
-                  isDarkMode 
-                    ? 'bg-[#0D0B1F] border-[#00F5FF]/30 text-white hover:bg-[#00F5FF]/10'
-                    : 'bg-white border-[#3B82F6]/30 text-[#3B82F6] hover:bg-[#3B82F6]/10 shadow-lg'
-                }`}
-                whileHover={{ 
-                  scale: 1.05,
-                  boxShadow: isDarkMode 
-                    ? '0 0 20px rgba(0, 245, 255, 0.3)'
-                    : '0 0 20px rgba(59, 130, 246, 0.3)'
+              <motion.div
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6"
+                style={{
+                  background: 'var(--color-bg-surface)',
+                  border: '1px solid var(--color-border-strong)',
                 }}
-                whileTap={{ scale: 0.95 }}
               >
-                <span className="relative z-10">Launch Your Project</span>
-              </motion.button>
-              <motion.button
-                onClick={scrollToServices}
-                className={`relative px-6 py-3 rounded-lg font-medium text-lg overflow-hidden group border transition-all duration-200 ${
-                  isDarkMode 
-                    ? 'bg-[#0D0B1F] border-[#00F5FF]/30 text-white hover:bg-[#00F5FF]/10'
-                    : 'bg-white border-[#3B82F6]/30 text-[#3B82F6] hover:bg-[#3B82F6]/10 shadow-lg'
-                }`}
-                whileHover={{ 
-                  scale: 1.05,
-                  boxShadow: isDarkMode 
-                    ? '0 0 20px rgba(0, 245, 255, 0.3)'
-                    : '0 0 20px rgba(59, 130, 246, 0.3)'
-                }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <span className="relative z-10 flex items-center justify-center gap-2">
-                  <span>Explore Services</span>
+                <Sparkles className="w-4 h-4 accent-text" />
+                <span className="text-sm font-medium text-[var(--color-text-secondary)]">
+                  Digital experiences that shine
                 </span>
-              </motion.button>
-            </div>
-          </motion.div>
+              </motion.div>
+
+              <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-[1.1] tracking-tight">
+                <span className="text-[var(--color-text)]">Welcome to </span>
+                <span
+                  className="bg-clip-text text-transparent"
+                  style={{ background: 'linear-gradient(135deg, var(--color-accent), var(--color-accent-2))', WebkitBackgroundClip: 'text' }}
+                >
+                  WebHub
+                </span>
+              </h1>
+
+              <p
+                className="text-xl md:text-2xl font-medium mb-4"
+                style={{ color: 'var(--color-accent-light)' }}
+              >
+                Making Your Business Shine Online
+              </p>
+
+              <p className="text-lg text-[var(--color-text-secondary)] mb-10 max-w-xl leading-relaxed">
+                We specialize in enhancing your business's online presence through custom website design,
+                social media management, SEO, content creation, and online reputation management.
+              </p>
+
+              <div className="flex flex-wrap gap-4">
+                <motion.button
+                  onClick={handleLaunchClick}
+                  className="btn-accent px-6 py-3.5 rounded-xl font-semibold text-base flex items-center gap-2"
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
+                >
+                  Launch Your Project
+                  <ArrowRight className="w-5 h-5" />
+                </motion.button>
+                <motion.button
+                  onClick={scrollToServices}
+                  className="btn-outline px-6 py-3.5 rounded-xl font-semibold text-base"
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
+                >
+                  Explore Services
+                </motion.button>
+              </div>
+            </motion.div>
+
+            {/* Right: 3D Hero */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              <Hero3D />
+            </motion.div>
+          </div>
         </div>
       </div>
 
-      {/* Spacer Section - Creates breathing room between hero and services */}
-      <div className={`py-32 ${
-        isDarkMode 
-          ? 'bg-gradient-to-b from-[#0A0B14] to-[#0A0B14]/95'
-          : 'bg-gradient-to-b from-white to-[#F9FAFB]'
-      }`}>
+      {/* Spacer */}
+      <div className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div 
+          <motion.div
             className="text-center"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <motion.div
-              className={`w-24 h-1 mx-auto mb-8 rounded-full ${
-                isDarkMode 
-                  ? 'bg-gradient-to-r from-[#00F5FF]/30 via-[#00F5FF] to-[#00F5FF]/30'
-                  : 'bg-gradient-to-r from-[#3B82F6]/30 via-[#3B82F6] to-[#3B82F6]/30'
-              }`}
-              animate={{
-                scaleX: [1, 1.2, 1],
-                opacity: [0.7, 1, 0.7]
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
+            <div
+              className="w-16 h-1 mx-auto mb-6 rounded-full"
+              style={{ background: 'linear-gradient(to right, transparent, var(--color-accent), transparent)' }}
             />
-            <motion.p 
-              className={`text-lg font-medium ${
-                isDarkMode ? 'text-[#E2E2E2]/80' : 'text-[#4B5563]'
-              }`}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ delay: 0.3, duration: 0.8 }}
-              viewport={{ once: true }}
-            >
+            <p className="text-lg font-medium text-[var(--color-text-secondary)]">
               Discover our comprehensive digital solutions
-            </motion.p>
+            </p>
           </motion.div>
         </div>
       </div>
 
       {/* Services Section */}
-      <div className={`py-20 ${
-        isDarkMode 
-          ? 'bg-[#0A0B14]/95'
-          : 'bg-[#F9FAFB]'
-      }`} id="services">
+      <div className="py-16" id="services">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-20">
-          <div className="text-center mb-16">
-            <motion.h2 
-              className={`text-4xl font-bold mb-4 ${
-                isDarkMode ? 'neon-glow text-white' : 'neon-glow text-[#1F2937]'
-              }`}
+          <div className="text-center mb-12">
+            <motion.h2
+              className="font-display text-4xl md:text-5xl font-bold mb-4 tracking-tight text-[var(--color-text)]"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
@@ -201,13 +143,11 @@ export function HomePage() {
             >
               Digital Evolution Services
             </motion.h2>
-            <motion.p 
-              className={`max-w-2xl mx-auto ${
-                isDarkMode ? 'text-[#E2E2E2]' : 'text-[#4B5563]'
-              }`}
+            <motion.p
+              className="max-w-2xl mx-auto text-[var(--color-text-secondary)] text-lg"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.6 }}
+              transition={{ delay: 0.1, duration: 0.6 }}
               viewport={{ once: true }}
             >
               Future-proof solutions designed to elevate your digital presence beyond imagination.
@@ -221,46 +161,30 @@ export function HomePage() {
       <PricingSection />
       <InfographicsStatsStrip />
 
+      {/* CTA */}
       <div className="relative py-20 overflow-hidden">
         <div className="absolute inset-0 cyber-grid opacity-30" />
         <div className="max-w-4xl mx-auto text-center px-4 relative z-10">
-          <h2 className={`text-3xl md:text-4xl font-bold mb-6 ${
-            isDarkMode ? 'neon-glow text-white' : 'neon-glow text-[#1F2937]'
-          }`}>
+          <h2 className="font-display text-3xl md:text-4xl font-bold mb-6 tracking-tight text-[var(--color-text)]">
             Ready to Transform Your Digital Presence?
           </h2>
-          <p className={`mb-8 ${
-            isDarkMode ? 'text-[#E2E2E2]' : 'text-[#4B5563]'
-          }`}>
+          <p className="mb-8 text-lg text-[var(--color-text-secondary)]">
             Let's create something extraordinary together.
           </p>
           <motion.button
             onClick={handleCTAClick}
-            className={`relative group px-8 py-4 rounded-lg border font-medium transition-all duration-200 ${
-              isDarkMode 
-                ? 'bg-[#0D0B1F] border-[#00F5FF]/30 text-[#00F5FF] hover:bg-[#00F5FF]/10'
-                : 'bg-white border-[#3B82F6]/30 text-[#3B82F6] hover:bg-[#3B82F6]/10 shadow-lg'
-            }`}
-            whileHover={{ 
-              scale: 1.05,
-              boxShadow: isDarkMode 
-                ? '0 0 20px rgba(0, 245, 255, 0.3)'
-                : '0 0 20px rgba(59, 130, 246, 0.3)'
-            }}
-            whileTap={{ scale: 0.95 }}
+            className="btn-accent px-8 py-4 rounded-xl font-semibold text-lg flex items-center gap-2 mx-auto"
+            whileHover={{ scale: 1.04 }}
+            whileTap={{ scale: 0.96 }}
           >
-            <span className="relative z-10">Initialize Project</span>
+            Initialize Project
+            <ArrowRight className="w-5 h-5" />
           </motion.button>
         </div>
       </div>
 
-      {/* Scroll Indicator - Only shows after scrolling past first page */}
       <ScrollIndicator onClick={scrollToServices} />
-      
-      {/* KPI Stats Section */}
       <KPIStatsSection />
-      
-      {/* Footer */}
       <Footer />
     </>
   );

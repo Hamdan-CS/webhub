@@ -27,295 +27,112 @@ export function ServiceSelectionPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!selectedService || !message || !email) {
-      alert('Please fill in all required fields');
-      return;
-    }
-
+    if (!selectedService || !message || !email) { alert('Please fill in all required fields'); return; }
     try {
-      await submitServiceRequest({
-        selectedService,
-        email,
-        domain,
-        socialMedia,
-        message,
-      });
-
-      alert('✅ Service request submitted successfully!');
-      // Reset form
-      setSelectedService('');
-      setMessage('');
-      setEmail('');
-      setDomain('');
-      setSocialMedia('');
-
-      // Navigate to contact page
+      await submitServiceRequest({ selectedService, email, domain, socialMedia, message });
+      alert('Service request submitted successfully!');
+      setSelectedService(''); setMessage(''); setEmail(''); setDomain(''); setSocialMedia('');
       navigate('/contact');
     } catch (error) {
-      alert('❌ Error submitting request. Please try again.');
+      alert('Error submitting request. Please try again.');
       console.error(error);
     }
   };
 
+  const inputClass = isDarkMode
+    ? 'w-full pl-10 pr-4 py-3 rounded-xl bg-[var(--color-bg)] border text-[var(--color-text)] focus:ring-2 transition-all'
+    : 'w-full pl-10 pr-4 py-3 rounded-xl bg-[var(--color-bg-elevated)] border text-[var(--color-text)] focus:ring-2 transition-all';
+  const inputStyle = { borderColor: 'var(--color-border-strong)' };
+
+  const selectCardClass = (isSelected: boolean) =>
+    `p-4 rounded-xl border cursor-pointer transition-all duration-200 ${isSelected ? 'border-transparent' : ''}`;
+  const selectCardStyle = (isSelected: boolean) => ({
+    background: isSelected ? 'color-mix(in srgb, var(--color-accent) 10%, transparent)' : 'var(--color-bg-elevated)',
+    borderColor: isSelected ? 'var(--color-accent)' : 'var(--color-border)',
+    boxShadow: isSelected ? '0 0 20px var(--glow-primary)' : 'none',
+  });
+
   return (
-    <div className={`min-h-screen pt-24 pb-12 ${
-      isDarkMode 
-        ? 'bg-[#0A0B14]' 
-        : 'bg-[#F9FAFB]'
-    }`}>
-      <div className="max-w-4xl mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className={`p-8 rounded-2xl border ${
-            isDarkMode 
-              ? 'bg-[#0D0B1F]/60 backdrop-blur-lg border-[#00F5FF]/10'
-              : 'bg-white border-[#3B82F6]/10 shadow-lg'
-          }`}
-        >
+    <div className="min-h-screen pt-24 pb-12 px-4">
+      <div className="max-w-4xl mx-auto">
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="glass-card p-8">
           <div className="text-center mb-12">
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 0.5 }}
-              className={`w-16 h-16 mx-auto mb-6 rounded-full flex items-center justify-center ${
-                isDarkMode 
-                  ? 'bg-[#00F5FF]/10'
-                  : 'bg-[#3B82F6]/10'
-              }`}
-            >
-              <MessageSquare className={`w-8 h-8 ${
-                isDarkMode ? 'text-[#00F5FF]' : 'text-[#3B82F6]'
-              }`} />
+            <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ duration: 0.5 }} className="w-16 h-16 mx-auto mb-6 rounded-full flex items-center justify-center" style={{ background: 'color-mix(in srgb, var(--color-accent) 15%, transparent)' }}>
+              <MessageSquare className="w-8 h-8 accent-text" />
             </motion.div>
-            <h1 className={`text-4xl font-bold mb-4 ${
-              isDarkMode ? 'neon-glow text-white' : 'neon-glow text-[#1F2937]'
-            }`}>
-              Select Your Service
-            </h1>
-            <p className={`text-lg ${
-              isDarkMode ? 'text-[#E2E2E2]' : 'text-[#4B5563]'
-            }`}>
-              Choose the service you need and tell us about your requirements
-            </p>
+            <h1 className="font-display text-4xl font-bold mb-4 tracking-tight text-[var(--color-text)]">Select Your Service</h1>
+            <p className="text-lg text-[var(--color-text-secondary)]">Choose the service you need and tell us about your requirements</p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-8">
-            {/* Initial Setup Section */}
             <div className="space-y-4">
               <div className="flex items-center gap-3 mb-4">
-                <Wrench className={`w-6 h-6 ${
-                  isDarkMode ? 'text-[#00F5FF]' : 'text-[#3B82F6]'
-                }`} />
-                <h2 className={`text-2xl font-bold ${
-                  isDarkMode ? 'text-[#00F5FF]' : 'text-[#3B82F6]'
-                }`}>
-                  Initial Setup
-                </h2>
+                <Wrench className="w-6 h-6 accent-text" />
+                <h2 className="text-2xl font-bold text-[var(--color-text)]">Initial Setup</h2>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {initialSetup.map((service) => (
-                  <motion.div
-                    key={service.id}
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    className={`p-4 rounded-xl border cursor-pointer transition-all duration-200 ${
-                      selectedService === service.id
-                        ? isDarkMode
-                          ? 'bg-[#00F5FF]/10 border-[#00F5FF] shadow-lg shadow-[#00F5FF]/20'
-                          : 'bg-[#3B82F6]/10 border-[#3B82F6] shadow-lg shadow-[#3B82F6]/20'
-                        : isDarkMode
-                          ? 'border-[#00F5FF]/20 hover:border-[#00F5FF]/50 bg-[#0A0B14]/50'
-                          : 'border-[#3B82F6]/20 hover:border-[#3B82F6]/50 bg-white shadow-md hover:shadow-lg'
-                    }`}
-                    onClick={() => setSelectedService(service.id)}
-                  >
-                    <div className={`font-medium ${
-                      isDarkMode ? 'text-white' : 'text-[#1F2937]'
-                    }`}>
-                      {service.name}
-                    </div>
-                    <div className={`text-sm ${
-                      isDarkMode ? 'text-[#00F5FF]' : 'text-[#3B82F6]'
-                    }`}>
-                      {service.price}
-                    </div>
+                  <motion.div key={service.id} whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className={selectCardClass(selectedService === service.id)} style={selectCardStyle(selectedService === service.id)} onClick={() => setSelectedService(service.id)}>
+                    <div className="font-medium text-[var(--color-text)]">{service.name}</div>
+                    <div className="text-sm accent-text">{service.price}</div>
                   </motion.div>
                 ))}
               </div>
             </div>
 
-            {/* Additional Services Section */}
             <div className="space-y-4">
               <div className="flex items-center gap-3 mb-4">
-                <Plus className={`w-6 h-6 ${
-                  isDarkMode ? 'text-[#00F5FF]' : 'text-[#3B82F6]'
-                }`} />
-                <h2 className={`text-2xl font-bold ${
-                  isDarkMode ? 'text-[#00F5FF]' : 'text-[#3B82F6]'
-                }`}>
-                  Additional Services
-                </h2>
+                <Plus className="w-6 h-6 accent-text" />
+                <h2 className="text-2xl font-bold text-[var(--color-text)]">Additional Services</h2>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {additionalServices.map((service) => (
-                  <motion.div
-                    key={service.id}
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    className={`p-4 rounded-xl border cursor-pointer transition-all duration-200 ${
-                      selectedService === service.id
-                        ? isDarkMode
-                          ? 'bg-[#00F5FF]/10 border-[#00F5FF] shadow-lg shadow-[#00F5FF]/20'
-                          : 'bg-[#3B82F6]/10 border-[#3B82F6] shadow-lg shadow-[#3B82F6]/20'
-                        : isDarkMode
-                          ? 'border-[#00F5FF]/20 hover:border-[#00F5FF]/50 bg-[#0A0B14]/50'
-                          : 'border-[#3B82F6]/20 hover:border-[#3B82F6]/50 bg-white shadow-md hover:shadow-lg'
-                    }`}
-                    onClick={() => setSelectedService(service.id)}
-                  >
-                    <div className={`font-medium ${
-                      isDarkMode ? 'text-white' : 'text-[#1F2937]'
-                    }`}>
-                      {service.name}
-                    </div>
-                    <div className={`text-sm ${
-                      isDarkMode ? 'text-[#00F5FF]' : 'text-[#3B82F6]'
-                    }`}>
-                      {service.price}
-                    </div>
+                  <motion.div key={service.id} whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className={selectCardClass(selectedService === service.id)} style={selectCardStyle(selectedService === service.id)} onClick={() => setSelectedService(service.id)}>
+                    <div className="font-medium text-[var(--color-text)]">{service.name}</div>
+                    <div className="text-sm accent-text">{service.price}</div>
                   </motion.div>
                 ))}
               </div>
             </div>
 
-            {/* Contact Information Section */}
             <div className="space-y-4">
               <div className="flex items-center gap-3 mb-4">
-                <Mail className={`w-6 h-6 ${
-                  isDarkMode ? 'text-[#00F5FF]' : 'text-[#3B82F6]'
-                }`} />
-                <h2 className={`text-2xl font-bold ${
-                  isDarkMode ? 'text-[#00F5FF]' : 'text-[#3B82F6]'
-                }`}>
-                  Contact Information
-                </h2>
+                <Mail className="w-6 h-6 accent-text" />
+                <h2 className="text-2xl font-bold text-[var(--color-text)]">Contact Information</h2>
               </div>
-              
-              {/* Email Field (Required) */}
+
               <div>
-                <label className={`block text-lg font-medium mb-2 ${
-                  isDarkMode ? 'text-[#00F5FF]' : 'text-[#3B82F6]'
-                }`}>
-                  Email Address <span className="text-red-500">*</span>
-                </label>
+                <label className="block text-lg font-medium mb-2 accent-text">Email Address <span className="text-red-500">*</span></label>
                 <div className="relative">
-                  <Mail className={`absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 ${
-                    isDarkMode ? 'text-[#00F5FF]/50' : 'text-[#3B82F6]/50'
-                  }`} />
-                  <input
-                    type="email"
-                    className={`w-full pl-10 pr-4 py-3 rounded-lg border transition-all ${
-                      isDarkMode 
-                        ? 'bg-[#0A0B14] border-[#00F5FF]/20 text-white focus:border-[#00F5FF]/50 focus:ring-2 focus:ring-[#00F5FF]/20'
-                        : 'bg-[#F9FAFB] border-[#3B82F6]/30 text-[#1F2937] focus:border-[#3B82F6]/50 focus:ring-2 focus:ring-[#3B82F6]/20'
-                    }`}
-                    placeholder="your.email@example.com"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                  />
+                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5" style={{ color: 'var(--color-text-muted)' }} />
+                  <input type="email" className={inputClass} style={inputStyle} placeholder="your.email@example.com" value={email} onChange={(e) => setEmail(e.target.value)} required />
                 </div>
               </div>
 
-              {/* Domain Field (Optional) */}
               <div>
-                <label className={`block text-lg font-medium mb-2 ${
-                  isDarkMode ? 'text-[#00F5FF]' : 'text-[#3B82F6]'
-                }`}>
-                  Domain Name <span className={`${
-                    isDarkMode ? 'text-[#00F5FF]/50' : 'text-[#6B7280]'
-                  }`}>(optional)</span>
-                </label>
+                <label className="block text-lg font-medium mb-2 accent-text">Domain Name <span className="text-[var(--color-text-muted)]">(optional)</span></label>
                 <div className="relative">
-                  <Globe className={`absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 ${
-                    isDarkMode ? 'text-[#00F5FF]/50' : 'text-[#3B82F6]/50'
-                  }`} />
-                  <input
-                    type="text"
-                    className={`w-full pl-10 pr-4 py-3 rounded-lg border transition-all ${
-                      isDarkMode 
-                        ? 'bg-[#0A0B14] border-[#00F5FF]/20 text-white focus:border-[#00F5FF]/50 focus:ring-2 focus:ring-[#00F5FF]/20'
-                        : 'bg-[#F9FAFB] border-[#3B82F6]/30 text-[#1F2937] focus:border-[#3B82F6]/50 focus:ring-2 focus:ring-[#3B82F6]/20'
-                    }`}
-                    placeholder="yourdomain.com"
-                    value={domain}
-                    onChange={(e) => setDomain(e.target.value)}
-                  />
+                  <Globe className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5" style={{ color: 'var(--color-text-muted)' }} />
+                  <input type="text" className={inputClass} style={inputStyle} placeholder="yourdomain.com" value={domain} onChange={(e) => setDomain(e.target.value)} />
                 </div>
               </div>
 
-              {/* Social Media Field (Optional) */}
               <div>
-                <label className={`block text-lg font-medium mb-2 ${
-                  isDarkMode ? 'text-[#00F5FF]' : 'text-[#3B82F6]'
-                }`}>
-                  Social Media Accounts <span className={`${
-                    isDarkMode ? 'text-[#00F5FF]/50' : 'text-[#6B7280]'
-                  }`}>(optional)</span>
-                </label>
+                <label className="block text-lg font-medium mb-2 accent-text">Social Media Accounts <span className="text-[var(--color-text-muted)]">(optional)</span></label>
                 <div className="relative">
-                  <Share2 className={`absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 ${
-                    isDarkMode ? 'text-[#00F5FF]/50' : 'text-[#3B82F6]/50'
-                  }`} />
-                  <input
-                    type="text"
-                    className={`w-full pl-10 pr-4 py-3 rounded-lg border transition-all ${
-                      isDarkMode 
-                        ? 'bg-[#0A0B14] border-[#00F5FF]/20 text-white focus:border-[#00F5FF]/50 focus:ring-2 focus:ring-[#00F5FF]/20'
-                        : 'bg-[#F9FAFB] border-[#3B82F6]/30 text-[#1F2937] focus:border-[#3B82F6]/50 focus:ring-2 focus:ring-[#3B82F6]/20'
-                    }`}
-                    placeholder="@username (Instagram, Twitter, etc.)"
-                    value={socialMedia}
-                    onChange={(e) => setSocialMedia(e.target.value)}
-                  />
+                  <Share2 className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5" style={{ color: 'var(--color-text-muted)' }} />
+                  <input type="text" className={inputClass} style={inputStyle} placeholder="@username (Instagram, Twitter, etc.)" value={socialMedia} onChange={(e) => setSocialMedia(e.target.value)} />
                 </div>
               </div>
             </div>
 
-            {/* Message Box */}
-            <div className="space-y-4">
-              <label className={`block text-lg font-medium mb-2 ${
-                isDarkMode ? 'text-[#00F5FF]' : 'text-[#3B82F6]'
-              }`}>
-                Tell us about your requirements
-              </label>
-              <textarea
-                rows={6}
-                className={`w-full px-4 py-3 rounded-lg border transition-all resize-none ${
-                  isDarkMode 
-                    ? 'bg-[#0A0B14] border-[#00F5FF]/20 text-white focus:border-[#00F5FF]/50 focus:ring-2 focus:ring-[#00F5FF]/20'
-                    : 'bg-[#F9FAFB] border-[#3B82F6]/30 text-[#1F2937] focus:border-[#3B82F6]/50 focus:ring-2 focus:ring-[#3B82F6]/20'
-                }`}
-                placeholder="Describe your project needs and any specific requirements..."
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-                required
-              />
+            <div>
+              <label className="block text-lg font-medium mb-2 accent-text">Tell us about your requirements</label>
+              <textarea rows={6} className={`${inputClass} resize-none`} style={inputStyle} placeholder="Describe your project needs and any specific requirements..." value={message} onChange={(e) => setMessage(e.target.value)} required />
             </div>
 
-            <motion.button
-              type="submit"
-              className={`w-full px-6 py-4 border rounded-lg font-medium transition-all duration-200 flex items-center justify-center gap-2 group ${
-                isDarkMode 
-                  ? 'bg-[#00F5FF]/10 hover:bg-[#00F5FF]/20 border-[#00F5FF]/30 text-white'
-                  : 'bg-[#3B82F6]/10 hover:bg-[#3B82F6]/20 border-[#3B82F6]/30 text-[#3B82F6] shadow-md hover:shadow-lg'
-              }`}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <span>Request Quote</span>
+            <motion.button type="submit" className="btn-accent w-full px-6 py-4 rounded-xl font-semibold transition-all duration-200" whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.99 }}>
+              Request Quote
             </motion.button>
           </form>
         </motion.div>

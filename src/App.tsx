@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { ThemeProvider, useTheme } from './contexts/ThemeContext';
+import { ThemeProvider } from './contexts/ThemeContext';
 import { Navbar } from './components/Navbar';
 import { HomePage } from './pages/HomePage';
 import { ContactPage } from './pages/ContactPage';
@@ -11,15 +11,9 @@ import { ProjectFormPage } from './pages/ProjectFormPage';
 import { PlanSelectionPage } from './pages/PlanSelectionPage';
 
 function AppContent() {
-  const { isDarkMode } = useTheme();
-  
   return (
     <Router>
-      <div className={`min-h-screen transition-all duration-300 ${
-        isDarkMode 
-          ? 'bg-[#0A0B14] text-white cyber-grid' 
-          : 'bg-white text-[#1F2937] cyber-grid'
-      }`}>
+      <div className="min-h-screen transition-colors duration-400">
         <Navbar />
         <Routes>
           <Route path="/" element={<HomePage />} />
