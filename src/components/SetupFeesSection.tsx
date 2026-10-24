@@ -1,11 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { SetupFeeCard } from './SetupFeeCard';
-import { useTheme } from '../contexts/ThemeContext';
 
 export function SetupFeesSection() {
-  const { isDarkMode } = useTheme();
-
   const setupFees = {
     title: "Initial Setup",
     description: "One-time fee covering website, social media, SEO, and initial content creation",
@@ -29,9 +26,18 @@ export function SetupFeesSection() {
     <div className="relative py-20 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <motion.h2 className="font-display text-4xl font-bold mb-4 tracking-tight text-[var(--color-text)]" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>Flexible Options</motion.h2>
-          <p className="text-[var(--color-text-secondary)] max-w-2xl mx-auto text-lg">Transparent pricing structure designed to fit your needs</p>
+          <motion.h2 
+            className="text-4xl font-bold mb-4 glitch"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+          >
+            Flexible Options
+          </motion.h2>
+          <p className="text-gray-400 max-w-2xl mx-auto">
+            Transparent pricing structure designed to fit your needs
+          </p>
         </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <SetupFeeCard {...setupFees} />
           <SetupFeeCard {...additionalServices} />
